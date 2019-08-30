@@ -56,7 +56,7 @@ namespace ApiUser.Controllers
                        Subject = new ClaimsIdentity (new Claim[] {
                            new Claim("UserID",user.Id.ToString())
                        }),
-                       Expires = DateTime.UtcNow.AddMinutes(5),
+                       Expires = DateTime.UtcNow.AddDays(1),
                        SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key),SecurityAlgorithms.HmacSha256Signature)
                    }; 
                    var tokenHandler = new JwtSecurityTokenHandler();

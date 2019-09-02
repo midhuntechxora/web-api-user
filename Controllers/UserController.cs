@@ -30,5 +30,29 @@ namespace ApiUser.Controllers
             };
         }
 
+        [HttpGet]
+        [Authorize(Roles="Admin")]
+        [Route("forAdmin")]
+        //GET api/forAdmin
+        public string GetForAdmin() {
+            return "Web method for admin";
+        }
+
+        [HttpGet]
+        [Authorize(Roles="User")]
+        [Route("forUser")]
+        //GET api/forUser
+        public string GetForUser() {
+            return "Web method for User";
+        }
+
+        [HttpGet]
+        [Authorize(Roles="Admin,User")]
+        [Route("forAdminOrUser")]
+        //GET api/forAdminOrUser
+        public string GetAdminOrUser() {
+            return "Web method for AdminOrUser";
+        }
+
     }
 }

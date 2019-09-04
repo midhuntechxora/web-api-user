@@ -53,6 +53,22 @@ namespace ApiUser.Controllers
         public string GetAdminOrUser() {
             return "Web method for AdminOrUser";
         }
+        
+        [HttpPut]
+        [Authorize]
+        //PUT api/User
+        public async Task<Object> UpdateUserProfile(ApplicationUserModel model) {
+            string userId = User.Claims.First(c =>c.Type == "UserID").Value;
+            var user = await _userManager.FindByIdAsync(userId);
+            user.FullName=model.FullName;
+            user.Email=model.Email;
+            IdentityResult identityResult = await _userManager.UpdateAsync(user);
+            return new  {
+                user.FullName,
+                user.Email,
+                user.UserName
+            };
+        }
 
     }
 }
